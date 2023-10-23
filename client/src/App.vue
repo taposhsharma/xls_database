@@ -1,20 +1,21 @@
 <template>
   <div>
-    <CreateFIle/>
-<UploadFile></UploadFile>
+    <NavBar/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
+import NavBar from './components/NavBar.vue';
 
-import UploadFile from './components/UploadFile.vue';
-import CreateFIle from './components/CreateFIle.vue';
+
+// import UploadFile from './components/UploadFile.vue';
+// import CreateFIle from './components/CreateFIle.vue';
 export default {
   name: 'App',
   components: {
-   UploadFile,
-   CreateFIle
-  }
+    NavBar
+}
 }
 </script>
 
