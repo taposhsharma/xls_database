@@ -27,6 +27,24 @@
       <button class="btn btn-primary btn-lg" @click="handleFileUpload">Upload</button>
     </div>
   </div>
+
+  <div class="modal fade" :class="{ 'show': showModal }" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" >
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Notification</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"  @click="closeModal"></button>
+      </div>
+      <div class="modal-body">
+        File Uploaded Successfully
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  @click="closeModal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
 </template>
 
 <script>
@@ -36,9 +54,24 @@ export default {
   data() {
     return {
       selectedFile: null,
+      showModal: false,
     };
   },
   methods: {
+    openModal() {
+      this.showModal = true;
+      document.addEventListener('click', this.closeModalOnOutsideClick);
+    },
+    closeModal() {
+      this.showModal = false;
+      
+      document.removeEventListener('click', this.closeModalOnOutsideClick);
+    },
+    closeModalOnOutsideClick(event) {
+      if (!event.target.closest('.modal-content')) {
+        this.closeModal();
+      }
+    },
     dragOver(e) {
       e.preventDefault();
       this.$refs.fileInput.style.display = 'block';
@@ -82,6 +115,7 @@ export default {
           .then((response) => {
             console.log("File uploaded successfully");
             console.log("Response:", response.data);
+            this.openModal()
           })
           .catch((error) => {
             console.error("File upload error:", error);
@@ -164,5 +198,12 @@ ul {
   font-size: 30px;
   margin-right: 50px;
   margin-top: 10px;
+}
+.modal.show {
+  display: flex;
+}
+
+.modal-content{
+  width:500px
 }
 </style>
