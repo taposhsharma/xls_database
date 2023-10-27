@@ -13,16 +13,35 @@ const storage = multer.diskStorage({
       // Define your custom filename logic here
        const originalFileName = file.originalname;
     const filePath = path.join('uploads', originalFileName);
+   if(req.params.id){
+    cb(null, originalFileName);
+   }
+   else{
 
+   
     // Check if a file with the same name already exists
+    if (fs.existsSync(filePath)) {
+      let fileIndex = 1;
+      let file = originalFileName.split(".")
+      // Generate a new filename with a (1) suffix
+      while (fs.existsSync(path.join('uploads', `${file[0]}(${fileIndex}).xlsx`))) {
+        fileIndex++;
+      }
 
+      const uniqueFileName = `${file[0]}(${fileIndex}).xlsx`;
+      cb(null, uniqueFileName);
+    } else {
       // File with the same name doesn't exist, use the original filename
       cb(null, originalFileName);
-    
+    }
+  }
     },
   });
   
+
+
   const upload = multer({ storage });
+
   // cret
 
 // Create a Mongoose model
@@ -40,7 +59,7 @@ router.post('/save', upload.single('file'), async (req, res) => {
     }
 
     // Save the file path to the database
-    console.log("hi1111",req.file)
+    // console.log("hi1111",req.file)
     const data = { filePath: req.file.path };
     const savedData = await Contacts.create(data);
 
@@ -76,7 +95,7 @@ router.get('/allData', async (req, res) => {
   
     
       const fileData = await Contacts.findById(fileId);
-      console.log(fileData)
+      // console.log(fileData)
   
       if (!fileData) {
         return res.status(404).json({ error: 'File not found' });
@@ -98,7 +117,7 @@ router.get('/allData', async (req, res) => {
 
 
   router.post('/saveFile/:id', upload.single('file'), async (req, res) => {
-    console.log("hello")
+    // console.log("hello")
   try {
     // Check if a file was uploaded
     if (!req.file) {
@@ -107,7 +126,7 @@ router.get('/allData', async (req, res) => {
     }
 
     // Save the file path to the database
-    console.log("hi1111",req.file)
+    // console.log("hi1111",req.file)
     const data = { filePath: req.file.path };
     const savedData = await Contacts.updateOne(
       { _id: (req.params.id) },
