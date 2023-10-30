@@ -4,7 +4,7 @@
     <div v-if="filePaths.length > 0" class="row">
       <div v-for="(file, index) in filePaths" :key="index" class="col-4">
         <div class="card link " >
-          <div class="row" v-if="!this.edit"> 
+          <div class="row" v-if="this.edit!==index"> 
             <div class="col-8" > 
   <div class="card-body " @click="getFile(file._id,file.filePath.split('/')[1])">
     <h5 class="card-title">{{ file.filePath.split('/')[1] }}</h5>
@@ -14,7 +14,7 @@
  
   <div class="col-1">
     <div class="button-container">
-    <button class="btn btn-outline-primary mybtn" @click="editfile(file.filePath.split('/')[1])" > <img src="../assets/pen.png"/></button>
+    <button class="btn btn-outline-primary mybtn" @click="editfile(file.filePath.split('/')[1],index)" > <img src="../assets/pen.png"/></button>
     <button class="btn btn-outline-danger mybtn" @click="deletefile(file._id)" > <img src="../assets/bin.png"/></button>
   </div>
     
@@ -57,7 +57,7 @@ export default {
       selectedFile: null,
       xlsFile: null,
       creatingXLS: false,
-      edit:false
+      edit:null
     };
   },
   mounted(){
@@ -110,10 +110,11 @@ export default {
 
         })
       },
-      editfile(name){
+      editfile(name,index){
         // console.log(name.split(".xlsx"))
         this.editname= name.split(".xlsx")[0]
-        this.edit = true
+        this.edit = index
+        console.log(this.edit)
 
       },
       save(id){

@@ -11,7 +11,7 @@ const routes =[
     {path:'/',component:UploadFileVue},
     {path:'/allFiles', component:CreateFIleVue},
     {path:'/fileData/:id/:filename',component:FileData},
-    {path:'/contactChart',component: ContactChart}
+    {path:'/contactChart/:id',component: ContactChart}
   
 ]
 

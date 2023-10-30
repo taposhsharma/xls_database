@@ -83,11 +83,15 @@
       Save
      
     </button>
-    <button class=" btn btn-outline-primary" @click="createXLS" v-if="xlsxData" >
+
+    <button class=" btn btn-outline-primary mymargin1" @click="createXLS" v-if="xlsxData" >
       Downlaod
      
     </button>
-  
+     <button class=" btn btn-outline-primary " @click="openChart" v-if="xlsxData" >
+      Chart
+     
+    </button>
   </div>
     </div>
     <!-- <div v-if="xlsxData">
@@ -335,6 +339,9 @@ export default {
       console.error(error);
     });
   }
+},
+openChart(){
+  this.$router.push('/contactChart/'+this.id)
 }
 
 
