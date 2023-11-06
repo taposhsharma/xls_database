@@ -24,7 +24,30 @@ export default {
 </script>
 
 <style>
+/* html{
+  background-color: #ffffff;
+opacity: 0.8;
+background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #ffffff 10px ), repeating-linear-gradient( #ededee55, #ededee );
+} */
+/* body{
+  overflow: hidden;
+} */
 #app {
-  
+  background: transparent;
+  background-color: #ffffff;
+opacity: 0.8;
+background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #ffffff 10px ), repeating-linear-gradient( #ededee55, #ededee );
+min-height: 100vh ;
+height: 100%;
+
+
 }
+/* .topDiv{
+  background: transparent;
+  background-color: #ffffff;
+opacity: 0.8;
+background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #ffffff 10px ), repeating-linear-gradient( #ededee55, #ededee );
+height: 100vh;
+
+} */
 </style>

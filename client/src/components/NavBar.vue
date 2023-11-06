@@ -4,10 +4,10 @@
 
 
 
-<nav class="navbar  navbar-expand-lg navbar-dark bg-dark ">
+<nav class="navbar  navbar-expand-lg navbar-dark custom-navbar">
     <div class="container">
         
-            <router-link to="/" class="navbar-brand">XLS File System</router-link>
+            <router-link to="/" class="navbar-brand heading">XLS File System</router-link>
       
             
             
@@ -26,6 +26,7 @@
                   
                   <div>
                     <!-- <button routerLink="/newcontact" class="btn btn-outline-secondary">All Files</button> -->
+                    <router-link to="/charts"  class="link">Comparative Charts</router-link>
                       <router-link to="/allFiles"  class="link"> All Files</router-link>
                     
                   </div> 
@@ -63,5 +64,16 @@
     border: 1px solid white;
     padding: 10px;
     border-radius: 10px;
+    margin-right:10px;
 }
+.link:hover{
+  color:#9b59b6;
+  background-color: white;
+}
+.custom-navbar{
+  background-color:#9b59b6;;
+}
+.heading:hover{
+  text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white; 
+  }
 </style>

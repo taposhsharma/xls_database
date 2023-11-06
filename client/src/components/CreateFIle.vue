@@ -2,7 +2,7 @@
   <div class="container main">
    <h1 class="head">All Files</h1>
     <div v-if="filePaths.length > 0" class="row">
-      <div v-for="(file, index) in filePaths" :key="index" class="col-4">
+      <div v-for="(file, index) in filePaths" :key="index" class="col-12">
         <div class="card link " >
           <div class="row" v-if="this.edit!==index"> 
             <div class="col-8" > 
@@ -12,10 +12,10 @@
   </div> 
 </div>
  
-  <div class="col-1">
+  <div class="col-4">
     <div class="button-container">
-    <button class="btn btn-outline-primary mybtn" @click="editfile(file.filePath.split('/')[1],index)" > <img src="../assets/pen.png"/></button>
-    <button class="btn btn-outline-danger mybtn" @click="deletefile(file._id)" > <img src="../assets/bin.png"/></button>
+    <button class="btn btn-outline-primary mybtn" @click="editfile(file.filePath.split('/')[1],index)" > <img src="../assets/pen.png"/> EDIT</button>
+    <button class="btn btn-outline-danger mybtn" @click="deletefile(file._id)" > <img src="../assets/bin.png"/> DELETE</button>
   </div>
     
   </div>
@@ -23,8 +23,16 @@
 </div>
 <div v-else>
   <div class="card-body " >
-    <input v-model="editname"/>
-  <button class="btn btn-primary btn-sm mysavebtn" @click="save(file._id)">Save</button>
+    <div class="row">
+      <div class="col-10">
+        <input v-model="editname" class="form-control"/>
+      </div>
+      <div class="col-2">
+        <button class="btn btn-outline-primary   mysavebtn" @click="save(file._id)">Save</button>
+      </div>
+    </div>
+   
+ 
     
   </div> 
   
@@ -153,7 +161,19 @@ export default {
 }
 .link{
   cursor: pointer;
-  margin-bottom:20px
+  margin-bottom:20px;
+  border-left: 3px solid  #8e44ad;
+  /* border: 1px solid  #8e44ad; */
+  transition: all 0.5s ease;
+}
+
+.link:hover{
+
+  border-left: 6px solid  #8e44ad;
+  color: #8e44ad;
+  transform: scale(1.01) ;
+  transition: all 0.2s ease;
+ 
 }
 .head{
   text-align: center;
@@ -165,9 +185,15 @@ export default {
 }
 .button-container {
   display: flex;
-  justify-content: space-between;  /* Adjust this to your preferred alignment */
+  justify-content: right;  /* Adjust this to your preferred alignment */
 }
 .mysavebtn{
   margin-left:20px  ;
+  color:#8e44ad;
+  border-color: #8e44ad;
+}
+.mysavebtn:hover{
+  color: white;
+  background-color: #8e44ad;
 }
 </style>

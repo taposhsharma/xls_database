@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container main">
 
    
     <form @submit.prevent="">
@@ -25,7 +25,7 @@
             </select>
           </div>
           <div class="mb-3">
-            <button type="submit" class="btn btn-outline-success">Generate Chart</button>
+            <button type="submit" class=" generateButton ">GENERATE CHART</button>
           </div>
         </form> 
 
@@ -37,10 +37,10 @@
      </div>
      <div class="container myClass">
 
-      <line-chart :dataset="dataset" :label="keys[selectedData]" v-if="dataset  &&  selectedChartType === 'line' && showChart"/>
-     <bar-chart :dataset="dataset" :label="keys[selectedData]" v-if="dataset  &&  selectedChartType === 'bar'  && showChart"/>
-     <pie-chart :dataset="dataset" :label="keys[selectedData]" v-if="dataset  &&  selectedChartType === 'pie'  && showChart"/>
-     <polar-chart :dataset="dataset" :label="keys[selectedData]" v-if="dataset  &&  selectedChartType === 'polar'  && showChart"/>
+      <line-chart :dataset="dataset" :label="[keys[selectedData]]" v-if="dataset  &&  selectedChartType === 'line' && showChart"/>
+     <bar-chart :dataset="dataset" :label="[keys[selectedData]]" v-if="dataset  &&  selectedChartType === 'bar'  && showChart"/>
+     <pie-chart :dataset="dataset" :label="[keys[selectedData]]" v-if="dataset  &&  selectedChartType === 'pie'  && showChart"/>
+     <polar-chart :dataset="dataset" :label="[keys[selectedData]]" v-if="dataset  &&  selectedChartType === 'polar'  && showChart"/>
      </div>
   
   </div>
@@ -110,7 +110,7 @@ watch: {
   // console.log(data)
 }
 
-this.dataset = data
+this.dataset = [data]
 console.log(data)
      
 
@@ -190,6 +190,46 @@ countOccurrences(arr, targetValue) {
  align-items: center;
 
  margin-top: 50px ;
- margin-bottom: 50px;
+ padding-bottom: 50px;
+}
+.main{
+  padding-top: 20px ;
+  color:  #9b59b6 ;
+}
+/* .generateButton {
+  
+  color: #8e44ad;
+  border-color: #8e44ad;
+}
+.generateButton:hover{
+  color: white;
+  background-color: #8e44ad;
+
+} */
+.generateButton {
+  /* margin-right: 20px; */
+ 
+  padding: 10px;
+  background-color: #9b59b6; /* $fl-lpurple */
+    border: 0;
+    outline: 0;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+ margin-top: 3px;
+    height: 40px;
+    width: 200px;
+    top: 0;
+    right: 0;
+    transition: transform 0.15s ease-in-out, box-shadow 0.35s linear, height 0.0s linear, margin-top 0.0s linear, width 0.0s linear;
+    /* transform: translateX(25px); */
+    box-shadow: 0px 5px 15px rgba(255, 64, 129, 0.2); /* $fl-pink */
+}
+.generateButton:hover {
+  height: 50px;
+    margin-top: 0px;
+    width: 200px;
+    
 }
 </style>
